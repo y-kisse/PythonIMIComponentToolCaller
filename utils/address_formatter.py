@@ -1,6 +1,7 @@
 import os
 import subprocess
 import json
+from shlex import quote
 
 class AddressFormatter:
     """
@@ -17,7 +18,7 @@ class AddressFormatter:
             IMIFormattedAddress
         """
 
-        cmdstr = "npx imi-enrichment-address -s \"{}\"".format(target)
+        cmdstr = "npx imi-enrichment-address -s {}".format(quote(target))
         node_directory = os.path.join(os.path.dirname(__file__), "dummy_node_project")
         response = subprocess.run(cmdstr, stdout=subprocess.PIPE, shell=True, cwd=node_directory)
 
